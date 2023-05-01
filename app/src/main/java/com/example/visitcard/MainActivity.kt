@@ -4,12 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material.icons.rounded.Home
@@ -42,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //Greeting()
+                    VisitCard()
                 }
             }
         }
@@ -56,7 +60,7 @@ fun VisitCard(){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(25.dp)
+            .background(color = Color(0xFF073042))
             .fillMaxSize()
     ) {
         Entete(
@@ -95,23 +99,51 @@ fun Entete(
 ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+            .fillMaxSize()
     ) {
         Image(
             painter = image,
             contentDescription = null,
             modifier = Modifier
-                .size(116.dp)
+                .size(136.dp)
         )
         Text(
             text = name,
-            fontSize = 25.sp,
+            fontSize = 35.sp,
+            color = Color.White,
             fontWeight = FontWeight.Bold
         )
         Text(
             text = title,
+            color = Color(0xFF00DD7A),
             fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Italic)
+    }
+}
+@Composable
+fun TripleCoordonnees(
+    text1: String,
+    text2: String,
+    text3: String,
+    icon1: ImageVector,
+    icon2: ImageVector,
+    icon3: ImageVector,
+    modifier: Modifier = Modifier
+){
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        Coordonnees(text = text1, icon = icon1,
+            modifier = Modifier.padding(top = 12.dp))
+        Coordonnees(text = text2, icon = icon2,
+            modifier = Modifier.padding(top = 12.dp))
+        Coordonnees(text = text3, icon = icon3,
+            modifier = Modifier.padding(top = 12.dp))
     }
 }
 
@@ -122,9 +154,14 @@ fun Coordonnees(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier,
-//            .fillMaxWidth(),
-//            .padding(start = 80.dp),
+        modifier = modifier
+            .border(
+                width = 2.dp,
+                color = Color.White,
+                shape = CircleShape
+            )
+            .fillMaxWidth(0.9f)
+            .padding(6.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
@@ -139,32 +176,11 @@ fun Coordonnees(
         Text(
             text = text,
             fontSize = 20.sp,
+            color = Color.White,
             modifier = Modifier
                 .padding(start = 8.dp)
 //                .weight(4f)
         )
-    }
-}
-
-@Composable
-fun TripleCoordonnees(
-    text1: String,
-    text2: String,
-    text3: String,
-    icon1: ImageVector,
-    icon2: ImageVector,
-    icon3: ImageVector,
-    modifier: Modifier = Modifier
-){
-    Column(
-        horizontalAlignment = Alignment.Start,
-        modifier = modifier
-            .padding(start = 50.dp)
-//            .fillMaxWidth()
-    ) {
-        Coordonnees(text = text1, icon = icon1)
-        Coordonnees(text = text2, icon = icon2)
-        Coordonnees(text = text3, icon = icon3)
     }
 }
 
